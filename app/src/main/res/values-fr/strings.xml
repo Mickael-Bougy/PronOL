@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pron\'OL</string>
+    <string name="connection">Connexion</string>
+    <string name="remember_me">Se souvenir de moi</string>
+    <string name="password">Mot de passe</string>
+    <string name="user">Pseudo</string>
+    <string name="create_my_account">Créer mon compte</string>
+</resources>

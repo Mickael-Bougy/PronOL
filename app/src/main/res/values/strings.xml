@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Pron\'OL</string>
+    <string name="connection">Connection</string>
+    <string name="remember_me">Remember me</string>
+    <string name="password">Password</string>
+    <string name="user">Pseudo</string>
+    <string name="create_my_account">Create my account</string>
 </resources>
