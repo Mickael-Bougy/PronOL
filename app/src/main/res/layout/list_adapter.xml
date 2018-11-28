@@ -1,0 +1,102 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="6dip" >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/middlespacer"
+            android:text="@string/Date"
+            android:gravity="center"
+            android:textSize="10sp"/>
+
+        <Space
+            android:id="@+id/middlespacer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:id="@+id/tvHour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_toEndOf="@+id/middlespacer"
+            android:text="@string/Hours"
+            android:textSize="10sp"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvExt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="42dp"
+            android:layout_marginRight="42dp"
+            android:text="@string/Outside" />
+
+        <TextView
+            android:id="@+id/tvTiret"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="-"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/tvdom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="42dp"
+            android:layout_marginStart="42dp"
+            android:text="@string/Home" />
+
+        <EditText
+            android:id="@+id/editScoreDom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="150dp"
+            android:layout_marginStart="150dp"
+            android:text="0" />
+
+        <EditText
+            android:id="@+id/editScoreExt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="150dp"
+            android:layout_marginRight="150dp"
+            android:text="0" />
+
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>
+
