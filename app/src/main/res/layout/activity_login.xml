@@ -2,10 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/background"
+    android:background="@drawable/background_menu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".activities.LoginActivity">
 
 
     <LinearLayout
@@ -35,17 +35,16 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="2.5"
+                    android:layout_weight="4"
                     >
 
                     <TextView
                         android:id="@+id/AppName"
                         android:background="@drawable/shape_pronol"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
+                        android:layout_centerInParent="true"                        android:gravity="center"
                         android:text="@string/app_name"
-                        android:layout_marginTop="40dp"
                         android:textSize="40sp"/>
                     <Space
                         android:id="@+id/botSpace"
@@ -58,23 +57,25 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="4"
+                    android:layout_weight="3.5"
+                    android:background="@android:color/white"
                     >
 
                     <EditText
-                        android:id="@+id/edit_pseudo"
+                        android:id="@+id/edit_mail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_above="@+id/edit_password"
-                        android:hint="@string/user" />
+                        android:hint="@string/mail" />
 
                     <EditText
                         android:id="@+id/edit_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:hint="@string/password" />
+                        android:hint="@string/password"
+                        android:inputType="textPassword"/>
 
                     <CheckBox
                         android:id="@+id/check_remember"
@@ -82,6 +83,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/edit_password"
                         android:layout_centerHorizontal="true"
+                        android:shadowColor="@color/colorLyonOr"
                         android:text="@string/remember_me" />
 
                     <Button
@@ -97,10 +99,11 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="3.5">
+                    android:layout_weight="2.5">
 
                     <TextView
-                        android:id="@+id/textView"
+                        android:clickable="true"
+                        android:id="@+id/textView_createAccount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
@@ -108,6 +111,7 @@
                         android:background="@color/colorLyonOr"
                         android:gravity="center"
                         android:text="@string/create_my_account"
+                        android:textSize="20sp"
                        />
                 </RelativeLayout>
             </LinearLayout>

@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#FFD700</color>
     <color name="colorLyonOr">#FFD700</color>
     <color name="colorLyonBleue">#0b3392</color>
     <color name="colorLyonRouge">#cd0428</color>
