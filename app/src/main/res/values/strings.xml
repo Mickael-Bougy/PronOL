@@ -20,4 +20,11 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_tabbed">TabbedActivity</string>
 
+
+
+    <string name="Home">Home</string>
+    <string name="Outside">Outside</string>
+    <string name="Date">Date</string>
+    <string name="Hours">Hour</string>
+
 </resources>

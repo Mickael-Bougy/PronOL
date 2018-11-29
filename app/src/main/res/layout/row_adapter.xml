@@ -16,7 +16,8 @@
             android:layout_toStartOf="@+id/middlespacer"
             android:text="@string/Date"
             android:gravity="center"
-            android:textSize="10sp"/>
+            android:textSize="10sp"
+            android:layout_toLeftOf="@+id/middlespacer" />
 
         <Space
             android:id="@+id/middlespacer"

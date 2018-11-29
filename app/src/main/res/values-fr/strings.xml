@@ -6,7 +6,17 @@
     <string name="password">Mot de passe</string>
     <string name="mail">Email</string>
     <string name="create_my_account">Créer mon compte</string>
+
     <string name="sign_up">S\'inscrire</string>
     <string name="snack_invalideField">Email ou mot de passe invalide</string>
     <string name="snack_emptyField">Veuillez remplir tous les champs</string>
+
+
+    <string name="Home">Domicile</string>
+    <string name="Outside">Exterieur</string>
+    <string name="Date">Date</string>
+    <string name="Hours">Horaires</string>
+
+
+
 </resources>

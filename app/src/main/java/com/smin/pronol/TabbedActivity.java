@@ -17,11 +17,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class TabbedActivity extends AppCompatActivity {
 
     private static final String TAG = "TabbedActivity";
+    ListView list;
+
+    String[] domicile =
+            {
+                    "Lille",
+                    "Lyon",
+                    "Lyon"
+
+            };
 
     private SectionPageAdapter mSectionsPageAdapter;
     private ViewPager mViewPager;
@@ -31,6 +41,7 @@ public class TabbedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabbed);
         mSectionsPageAdapter = new SectionPageAdapter(getSupportFragmentManager());
+
 
         mViewPager = (ViewPager)findViewById(R.id.container);
         setupViewPager(mViewPager);
