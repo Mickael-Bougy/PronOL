@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1077189446672",
+    "firebase_url": "https://pronol-b2610.firebaseio.com",
+    "project_id": "pronol-b2610",
+    "storage_bucket": "pronol-b2610.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1077189446672:android:10ce20724179f31a",
+        "android_client_info": {
+          "package_name": "com.smin.pronol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1077189446672-mmi41v64s9ggil9v6u8g6fbt2iutriu3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpFf-6V5OXKVC2zumldtKK2gelD0OdiKY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
