@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="6dip" >
+    android:padding="6dip"
+    android:background="@color/colorTheme">
 
 
     <RelativeLayout
@@ -17,7 +18,8 @@
             android:text="@string/Date"
             android:gravity="center"
             android:textSize="10sp"
-            android:layout_toLeftOf="@+id/middlespacer" />
+            android:layout_toLeftOf="@+id/middlespacer"
+            android:textColor="@color/colorPrimaryDark"/>
 
         <Space
             android:id="@+id/middlespacer"
@@ -32,7 +34,8 @@
             android:gravity="center"
             android:layout_toEndOf="@+id/middlespacer"
             android:text="@string/Hours"
-            android:textSize="10sp"/>
+            android:textSize="10sp"
+            android:textColor="@color/colorPrimaryDark"/>
 
 
     </RelativeLayout>
@@ -50,7 +53,8 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="42dp"
             android:layout_marginRight="42dp"
-            android:text="@string/Outside" />
+            android:text="@string/Outside"
+            android:textColor="@color/colorPrimaryDark"/>
 
         <TextView
             android:id="@+id/tvTiret"
@@ -58,7 +62,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="-"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:textColor="@color/colorPrimaryDark"/>
 
         <TextView
             android:id="@+id/tvdom"
@@ -69,7 +74,8 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="42dp"
             android:layout_marginStart="42dp"
-            android:text="@string/Home" />
+            android:text="@string/Home"
+            android:textColor="@color/colorPrimaryDark"/>
 
         <EditText
             android:id="@+id/editScoreDom"
@@ -80,7 +86,8 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="150dp"
             android:layout_marginStart="150dp"
-            android:text="0" />
+            android:text="0"
+            android:textColor="@color/colorPrimaryDark"/>
 
         <EditText
             android:id="@+id/editScoreExt"
@@ -91,7 +98,8 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="150dp"
             android:layout_marginRight="150dp"
-            android:text="0" />
+            android:text="0"
+            android:textColor="@color/colorPrimaryDark"/>
 
 
     </RelativeLayout>

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -53,6 +54,25 @@ public class Tab1Fragment extends Fragment {
 
             }
         });
-        return inflater.inflate(R.layout.tab1_fragment, container, false);
+        return view;
     }
 }
+
+class RowObject
+{
+    String domicile;
+    String exterieur;
+    int scoreDom;
+    int scoreExt;
+
+
+    public RowObject(String domicile, String exterieur, int scoreDom, int scoreExt)
+    {
+        this.domicile = domicile;
+        this.exterieur = exterieur;
+        this.scoreDom = scoreDom;
+        this.scoreExt = scoreExt;
+    }
+}
+
+
