@@ -5,107 +5,74 @@
     android:padding="6dip"
     android:background="@color/colorTheme">
 
-
-    <RelativeLayout
+    <TextView
+        android:id="@+id/tvDate"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:text="@string/Date"
+        android:gravity="center"
+        android:textSize="10sp"
+        android:textColor="@color/colorPrimaryDark"/>
 
-        <TextView
-            android:id="@+id/tvDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/middlespacer"
-            android:text="@string/Date"
-            android:gravity="center"
-            android:textSize="10sp"
-            android:layout_toLeftOf="@+id/middlespacer"
-            android:textColor="@color/colorPrimaryDark"/>
+    <TextView
+        android:id="@+id/tvDom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/editScoreDom"
+        android:gravity="center"
+        android:text="@string/Home"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_alignParentLeft="true" />
 
-        <Space
-            android:id="@+id/middlespacer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"/>
-
-        <TextView
-            android:id="@+id/tvHour"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_toEndOf="@+id/middlespacer"
-            android:text="@string/Hours"
-            android:textSize="10sp"
-            android:textColor="@color/colorPrimaryDark"/>
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
+    <EditText
+        android:id="@+id/editScoreDom"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/tvTiret"
+        android:hint="0"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        android:inputType="number"
+        android:imeOptions="actionDone"
+        android:textColor="@color/colorPrimaryDark" />
 
-        <TextView
-            android:id="@+id/tvExt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="42dp"
-            android:layout_marginRight="42dp"
-            android:text="@string/Outside"
-            android:textColor="@color/colorPrimaryDark"/>
+    <TextView
+        android:id="@+id/tvTiret"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="-"
+        android:textSize="30sp"
+        android:textColor="@color/colorPrimaryDark"/>
 
-        <TextView
-            android:id="@+id/tvTiret"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="-"
-            android:textSize="30sp"
-            android:textColor="@color/colorPrimaryDark"/>
+    <EditText
+        android:id="@+id/editScoreExt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:hint="0"
+        android:inputType="number"
+        android:imeOptions="actionDone"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_toRightOf="@+id/tvTiret"
+        android:textColor="@color/colorPrimaryDark" />
 
-        <TextView
-            android:id="@+id/tvdom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="42dp"
-            android:layout_marginStart="42dp"
-            android:text="@string/Home"
-            android:textColor="@color/colorPrimaryDark"/>
-
-        <EditText
-            android:id="@+id/editScoreDom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="150dp"
-            android:layout_marginStart="150dp"
-            android:text="0"
-            android:textColor="@color/colorPrimaryDark"/>
-
-        <EditText
-            android:id="@+id/editScoreExt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="150dp"
-            android:layout_marginRight="150dp"
-            android:text="0"
-            android:textColor="@color/colorPrimaryDark"/>
-
-
-    </RelativeLayout>
-
-
-
+    <TextView
+        android:id="@+id/tvExt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/editScoreExt"
+        android:gravity="center"
+        android:text="@string/Outside"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimaryDark"/>
 
 </RelativeLayout>
 

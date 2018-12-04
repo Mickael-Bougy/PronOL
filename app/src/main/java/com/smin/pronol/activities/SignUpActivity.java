@@ -48,7 +48,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()){
                                         // Lancement du menu
-                                        //startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+                                        startActivity(new Intent(SignUpActivity.this, TabbedActivity.class));
                                     }
                                     else {
                                         Utils.showSnackBar(SignUpActivity.this, findViewById(R.id.bottomLayout), getString(R.string.snack_invalideField));

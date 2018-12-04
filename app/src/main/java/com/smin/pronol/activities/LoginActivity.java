@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                                     if(task.isSuccessful()){
                                         System.out.println("CONNEXION");
                                         // Lancement du menu
-                                        //startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                        startActivity(new Intent(LoginActivity.this, TabbedActivity.class));
                                     }
                                     else
                                     {

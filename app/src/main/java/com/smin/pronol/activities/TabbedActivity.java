@@ -1,5 +1,6 @@
-package com.smin.pronol;
+package com.smin.pronol.activities;
 
+import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,13 +18,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.smin.pronol.R;
+import com.smin.pronol.SectionPageAdapter;
+import com.smin.pronol.Tab1Fragment;
+import com.smin.pronol.Tab2Fragment;
 
 public class TabbedActivity extends AppCompatActivity {
 
     private static final String TAG = "TabbedActivity";
     ListView list;
+    private EditText score_dom;
 
     String[] domicile =
             {
@@ -39,6 +49,9 @@ public class TabbedActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         setContentView(R.layout.activity_tabbed);
         mSectionsPageAdapter = new SectionPageAdapter(getSupportFragmentManager());
 
@@ -50,6 +63,7 @@ public class TabbedActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout)findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
     }
+
 
     private void setupViewPager(ViewPager viewPager)
     {

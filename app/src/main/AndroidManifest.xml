@@ -22,7 +22,7 @@
         <activity android:name=".activities.SignUpActivity" />
 
         <activity
-            android:name=".TabbedActivity"
+            android:name=".activities.TabbedActivity"
             android:label="@string/title_activity_tabbed"></activity>
     </application>
 
