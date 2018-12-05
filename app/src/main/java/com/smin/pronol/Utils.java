@@ -20,10 +20,14 @@ public class Utils {
         return ourInstance;
     }
 
-    private Utils() {
+    private Utils() {}
 
-
-    }
+    /**
+     *  Fais apparaitre une snackbar d'erreur
+     * @param c : context de l'application
+     * @param v : vue où sera affiché la snackbar
+     * @param text : texte à écrire
+     */
     public static void  showSnackBar(Context c, View v , String text){
         Snackbar mySnackbar = Snackbar.make(v,
                 text, Snackbar.LENGTH_SHORT);
@@ -32,17 +36,23 @@ public class Utils {
         mySnackbar.show();
     }
 
+    /**
+     * Recherche si le match à déjà été joué ou non
+     * @param dateToTest
+     * @return : true si le match est passé, false si non
+     */
     public static boolean isAlreadyPlayed(String dateToTest){
 
-        // Récupération de la date du jour
-        Date now = new Date();
         Date matchDate = new Date(dateToTest);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        //Récupération et formatage de la date système
+        String current = dateFormat.format(new Date());
+        Date now = new Date(current);
 
-        // TRONQUER LES HEURES
-        i++;
+        /*i++;
         Log.d(TAG, "isAlreadyPlayed: now "+ now);
         Log.d(TAG, "isAlreadyPlayed: match "+ matchDate);
-        Log.d(TAG, "isAlreadyPlayed: " + now.after(matchDate) + " for match "+i);
+        Log.d(TAG, "isAlreadyPlayed: " + now.after(matchDate) + " for match "+i);*/
 
         if(now.after(matchDate))
         {

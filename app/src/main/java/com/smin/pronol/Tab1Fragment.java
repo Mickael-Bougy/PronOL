@@ -5,13 +5,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.format.Time;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -20,17 +17,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Tab1Fragment extends Fragment {
 
-    private int posListMatch = 0;
+    private int posListMatch;
     ListView listViewMatch;
     List<Match> matchList;
-    DatabaseReference databaseEquipe;
+    DatabaseReference dbRefListMatch;
     private static final String TAG = "Tab1Fragment";
 
     @Nullable
@@ -39,51 +34,20 @@ public class Tab1Fragment extends Fragment {
 
         View view = inflater.inflate(R.layout.tab1_fragment, container, false);
 
-       //System.out.println("Affichage de la liste");
         listViewMatch = view.findViewById(R.id.list);
         matchList = new ArrayList<Match>();
-        databaseEquipe = FirebaseDatabase.getInstance().getReference();
+        dbRefListMatch = FirebaseDatabase.getInstance().getReference();
 
-        affichageListe(getActivity());
-        //list.setAdapter(listAdapter);
-
-       /* listViewMatch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Toast.makeText(getContext(), "You clicked at " + domicile[+ position], Toast.LENGTH_SHORT).show();
-            }
-        });*/
+        affichageListe();
         return view;
     }
 
-   /* @Override
-    public void onStart() {
-        super.onStart();
-
-        databaseEquipe.child("liste_match").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                //matchList.clear();
-                Log.d("TEST", String.valueOf(i++));
-                for(DataSnapshot matchSnapshot : dataSnapshot.getChildren())
-                {
-                    Match match = (Match) matchSnapshot.getValue(Match.class);
-                    matchList.add(match);
-                }
-                CustomList adapter = new CustomList(getActivity(), matchList);
-                listViewMatch.setAdapter(adapter);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }*/
-
-    public void affichageListe (Activity context){
-        databaseEquipe.child("liste_match").addValueEventListener(new ValueEventListener() {
+    /**
+     *  Récupération des matchs dans la bdd et remplissage de la listview
+     */
+    public void affichageListe (){
+        posListMatch = 0;
+        dbRefListMatch.child("liste_match").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -91,8 +55,9 @@ public class Tab1Fragment extends Fragment {
                 for(DataSnapshot matchSnapshot : dataSnapshot.getChildren())
                 {
                     Match match = (Match) matchSnapshot.getValue(Match.class);
+                    // Remplissage de la liste
                     matchList.add(match);
-                    // Affichage du prochain match a venir
+                    // Recherche de l'item contenant le prochain match à venir
                     if(Utils.isAlreadyPlayed(match.getDate())){
                         posListMatch++;
                     }
@@ -100,7 +65,7 @@ public class Tab1Fragment extends Fragment {
                 CustomList adapter = new CustomList(getActivity(), matchList);
                 listViewMatch.setAdapter(adapter);
 
-                // Séléction de la postion de départ de la liste
+                // Affichage de la liste su l'item contenant le prochain match à venir
                 Log.d(TAG, "onDataChange: pos "+ posListMatch);
                 listViewMatch.setSelectionFromTop(posListMatch,0);
             }
