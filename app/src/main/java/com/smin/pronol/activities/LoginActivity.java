@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -22,7 +21,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button connect;
     private EditText mail;
     private EditText password;
-    private CheckBox remember;
     private TextView createAccount;
     private FirebaseAuth firebaseAuth;
 
@@ -43,8 +41,8 @@ public class LoginActivity extends AppCompatActivity {
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
                 startActivity(new Intent ( LoginActivity.this, SignUpActivity.class));
+                finish();
             }
         });
 
@@ -58,9 +56,9 @@ public class LoginActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()){
-                                        System.out.println("CONNEXION");
                                         // Lancement du menu
-                                        //startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                        startActivity(new Intent(LoginActivity.this, TabbedActivity.class));
+                                        finish();
                                     }
                                     else
                                     {
@@ -75,6 +73,5 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 }

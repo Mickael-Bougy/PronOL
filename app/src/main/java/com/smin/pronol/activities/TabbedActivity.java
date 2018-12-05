@@ -1,4 +1,4 @@
-package com.smin.pronol;
+package com.smin.pronol.activities;
 
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -19,6 +19,12 @@ import android.view.ViewGroup;
 
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseUser;
+import com.smin.pronol.R;
+import com.smin.pronol.SectionPageAdapter;
+import com.smin.pronol.Tab1Fragment;
+import com.smin.pronol.Tab2Fragment;
 
 public class TabbedActivity extends AppCompatActivity {
 
