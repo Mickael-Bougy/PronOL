@@ -1,22 +1,29 @@
 package com.smin.pronol;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.smin.pronol.activities.LoginActivity;
+import com.smin.pronol.activities.TabbedActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +34,7 @@ public class Tab1Fragment extends Fragment {
     ListView listViewMatch;
     List<Match> matchList;
     DatabaseReference dbRefListMatch;
+    private FirebaseAuth session;
     private static final String TAG = "Tab1Fragment";
 
     @Nullable
@@ -38,7 +46,7 @@ public class Tab1Fragment extends Fragment {
         listViewMatch = view.findViewById(R.id.list);
         matchList = new ArrayList<Match>();
         dbRefListMatch = FirebaseDatabase.getInstance().getReference();
-
+        session = FirebaseAuth.getInstance();
         affichageListe(getActivity());
         return view;
     }
@@ -76,4 +84,6 @@ public class Tab1Fragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
     }
+
+
 }

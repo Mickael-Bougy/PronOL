@@ -71,22 +71,22 @@ public class TabbedActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK){
-            AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+            AlertDialog.Builder builder = new AlertDialog.Builder(TabbedActivity.this);
             builder.setMessage("Are you sure you want to disconnect ?")
-                    .setTitle("Disconnction")
+                    .setTitle("Disconnection")
                     .setNegativeButton("No", null)
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             session.signOut();
                             startActivity(new Intent(TabbedActivity.this, LoginActivity.class));
+                            finish();
                         }
                     });
             AlertDialog dialog = builder.create();
             dialog.show();
-            finish();
+
         }
         return super.onKeyDown(keyCode, event);
     }
-
 }

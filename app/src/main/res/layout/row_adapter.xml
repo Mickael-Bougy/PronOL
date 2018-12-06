@@ -20,24 +20,23 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/editScoreDom"
+        android:layout_toLeftOf="@+id/tvScoreDom"
         android:gravity="center"
         android:text="@string/Home"
         android:textSize="20sp"
         android:textColor="@color/colorPrimaryDark"
         android:layout_alignParentLeft="true" />
 
-    <EditText
-        android:id="@+id/editScoreDom"
+    <TextView
+        android:id="@+id/tvScoreDom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/tvTiret"
         android:hint="0"
+        android:textSize="20sp"
+        android:layout_marginRight="5dp"
         android:focusableInTouchMode="true"
-        android:clickable="true"
-        android:inputType="number"
-        android:imeOptions="actionDone"
         android:textColor="@color/colorPrimaryDark" />
 
     <TextView
@@ -49,14 +48,14 @@
         android:textSize="30sp"
         android:textColor="@color/colorPrimaryDark"/>
 
-    <EditText
-        android:id="@+id/editScoreExt"
+    <TextView
+        android:id="@+id/tvScoreExt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:hint="0"
-        android:inputType="number"
-        android:imeOptions="actionDone"
+        android:textSize="20sp"
+        android:layout_marginLeft="5dp"
         android:focusableInTouchMode="true"
         android:clickable="true"
         android:focusable="true"
@@ -68,7 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/editScoreExt"
+        android:layout_toRightOf="@+id/tvScoreExt"
         android:gravity="center"
         android:text="@string/Outside"
         android:textSize="20sp"

@@ -44,8 +44,8 @@ public class CustomList extends ArrayAdapter<Match> {
         TextView txtDom = (TextView) rowView.findViewById(R.id.tvDom);
         TextView txtExt = (TextView) rowView.findViewById(R.id.tvExt);
         TextView txtDate = (TextView) rowView.findViewById(R.id.tvDate);
-        EditText scoreDom = (EditText) rowView.findViewById(R.id.editScoreDom);
-        EditText scoreExt = (EditText) rowView.findViewById(R.id.editScoreExt);
+        TextView scoreDom =  rowView.findViewById(R.id.tvScoreDom);
+        TextView scoreExt =  rowView.findViewById(R.id.tvScoreExt);
         //</editor-fold>
 
         // Récupération des informations d'un match contenu dans la base de données
