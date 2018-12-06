@@ -1,10 +1,8 @@
 package com.smin.pronol.activities;
 
 import android.content.Intent;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -39,7 +37,7 @@ public class LaunchScreenActivity extends AppCompatActivity {
                         startActivity(new Intent(LaunchScreenActivity.this, LoginActivity.class));
                     }
                     else{
-                        startActivity(new Intent(LaunchScreenActivity.this, TabbedActivity.class));
+                        startActivity(new Intent(LaunchScreenActivity.this, MainTabActivity.class));
                     }
                 }
                 else{

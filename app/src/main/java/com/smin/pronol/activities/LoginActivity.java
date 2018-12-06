@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()){
                                         // Lancement du menu
-                                        startActivity(new Intent(LoginActivity.this, TabbedActivity.class));
+                                        startActivity(new Intent(LoginActivity.this, MainTabActivity.class));
                                         finish();
                                     }
                                     else
