@@ -4,12 +4,17 @@ package com.smin.pronol;
  */
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.TextView;
+
+import com.smin.pronol.activities.LoginActivity;
+import com.smin.pronol.activities.TabbedActivity;
 
 import java.util.List;
 
@@ -25,40 +30,71 @@ public class CustomList extends ArrayAdapter<Match> {
         this.matchList = matchList;
     }
 
+    public static class ViewHolder {
+        TextView tvDom;
+        TextView tvExt;
+        TextView tvDate;
+        TextView tvScoreDom;
+        TextView tvScoreExt;
+    }
     /**
      *  Fonction d'affichage des données récupérées via la base de donnée
      *
      * @param position
-     * @param View
+     * @param convertView
      * @param parent
      * @return
      */
     @Override
-    public View getView(int position,  View View,  ViewGroup parent)
+    public View getView(int position,  View convertView,  ViewGroup parent)
     {
 
-        LayoutInflater inflater = context.getLayoutInflater();
-        View rowView = inflater.inflate(R.layout.row_adapter, null, true);
+        if(convertView == null){
+            LayoutInflater inflater = context.getLayoutInflater();
+            convertView = inflater.inflate(R.layout.row_adapter, null, true);
+        }
 
-        //<editor-fold desc="Récupération des éléments IHM">
-        TextView txtDom = (TextView) rowView.findViewById(R.id.tvDom);
-        TextView txtExt = (TextView) rowView.findViewById(R.id.tvExt);
-        TextView txtDate = (TextView) rowView.findViewById(R.id.tvDate);
-        TextView scoreDom =  rowView.findViewById(R.id.tvScoreDom);
-        TextView scoreExt =  rowView.findViewById(R.id.tvScoreExt);
-        //</editor-fold>
+        ViewHolder holder = (ViewHolder) convertView.getTag();
+
+        if(holder == null){
+            holder = new ViewHolder();
+            holder.tvScoreDom = convertView.findViewById(R.id.tvScoreDom);
+            holder.tvScoreExt = convertView.findViewById(R.id.tvScoreExt);
+            holder.tvDate = convertView.findViewById(R.id.tvDate);
+            holder.tvDom = convertView.findViewById(R.id.tvDom);
+            holder.tvExt = convertView.findViewById(R.id.tvExt);
+            convertView.setTag(holder);
+        }
 
         // Récupération des informations d'un match contenu dans la base de données
-        Match match = matchList.get(position);
+        final Match match = matchList.get(position);
 
         //<editor-fold desc="Affichage des données">
-        txtDom.setText(match.getDomicile());
-        txtExt.setText(match.getExterieur());
-        txtDate.setText(match.getDate());
-        scoreDom.setText(String.valueOf(match.getScore_domicile()));
-        scoreExt.setText(String.valueOf(match.getScore_exterieur()));
+        holder.tvDom.setText(match.getDomicile());
+        holder.tvExt.setText(match.getExterieur());
+        holder.tvDate.setText(match.getDate());
+        holder.tvScoreDom.setText(String.valueOf(match.getScore_domicile()));
+        holder.tvScoreExt.setText(String.valueOf(match.getScore_exterieur()));
         //</editor-fold>
 
-        return rowView;
+        //TODO rowView.OnClickListener : CREATION DU LAYOUT POUR L'AFFICHAGE
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setMessage("Are you sure you want to disconnect ?")
+                        .setTitle(match.getDomicile()+"/"+match.getExterieur())
+                        .setPositiveButton("Register", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
+        return convertView;
     }
 }

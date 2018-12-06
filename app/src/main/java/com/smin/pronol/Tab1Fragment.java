@@ -14,7 +14,9 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -48,8 +50,16 @@ public class Tab1Fragment extends Fragment {
         dbRefListMatch = FirebaseDatabase.getInstance().getReference();
         session = FirebaseAuth.getInstance();
         affichageListe(getActivity());
+        listViewMatch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
+
         return view;
     }
+
 
     /**
      *  Récupération des matchs dans la bdd et remplissage de la listview
@@ -74,9 +84,10 @@ public class Tab1Fragment extends Fragment {
                 CustomList adapter = new CustomList(getActivity(), matchList);
                 listViewMatch.setAdapter(adapter);
 
-                // Affichage de la liste su l'item contenant le prochain match à venir
+                // Affichage de la liste sur l'item contenant le prochain match à venir
                 Log.d(TAG, "onDataChange: pos "+ posListMatch);
                 listViewMatch.setSelectionFromTop(posListMatch,0);
+                //
                 activity.findViewById(R.id.list).setVisibility(View.VISIBLE);
                 activity.findViewById(R.id.progressBar).setVisibility(View.GONE);
             }
@@ -84,6 +95,5 @@ public class Tab1Fragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
     }
-
 
 }
