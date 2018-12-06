@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.smin.pronol.R;
+import com.smin.pronol.Utils;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -16,31 +17,36 @@ import java.util.TimerTask;
 public class LaunchScreenActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
+    private Timer delayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch_screen);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        user = firebaseAuth.getCurrentUser();
-        System.out.println("USER :" + user);
+        delayer = new Timer();
 
-        Timer t = new Timer();
-
-        t.schedule(new TimerTask() {
+        // Pour rester au moins 2s sur le launchscreen
+        delayer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if( user == null){
-                    startActivity(new Intent(LaunchScreenActivity.this, LoginActivity.class));
+                // Check de la connexion internet
+                if (Utils.isNetworkAvailable(getApplicationContext()))
+                {
+                    firebaseAuth = FirebaseAuth.getInstance();
+                    user = firebaseAuth.getCurrentUser();
+
+                    if( user == null ){
+                        startActivity(new Intent(LaunchScreenActivity.this, LoginActivity.class));
+                    }
+                    else{
+                        startActivity(new Intent(LaunchScreenActivity.this, TabbedActivity.class));
+                    }
                 }
                 else{
-                    startActivity(new Intent(LaunchScreenActivity.this, TabbedActivity.class));
+                    startActivity(new Intent(LaunchScreenActivity.this, LoginActivity.class));
                 }
                 finish();
             }
         },2000);
-
-
-
     }
 }

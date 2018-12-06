@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,6 +34,11 @@ public class SignUpActivity extends AppCompatActivity {
         signUp = findViewById(R.id.btn_signup);
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+        if(!Utils.isNetworkAvailable(getApplicationContext())){
+            signUp.setEnabled(false);
+            Toast.makeText(getApplicationContext(),"Please define an internet connection",Toast.LENGTH_LONG);
+        }
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,8 +71,10 @@ public class SignUpActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
-        finish();
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+            finish();
+        }
         return super.onKeyDown(keyCode, event);
     }
 }

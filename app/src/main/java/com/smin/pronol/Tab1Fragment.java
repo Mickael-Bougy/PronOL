@@ -1,6 +1,7 @@
 package com.smin.pronol;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -38,14 +39,14 @@ public class Tab1Fragment extends Fragment {
         matchList = new ArrayList<Match>();
         dbRefListMatch = FirebaseDatabase.getInstance().getReference();
 
-        affichageListe();
+        affichageListe(getActivity());
         return view;
     }
 
     /**
      *  Récupération des matchs dans la bdd et remplissage de la listview
      */
-    public void affichageListe (){
+    public void affichageListe (final Activity activity){
         posListMatch = 0;
         dbRefListMatch.child("liste_match").addValueEventListener(new ValueEventListener() {
             @Override
@@ -68,6 +69,8 @@ public class Tab1Fragment extends Fragment {
                 // Affichage de la liste su l'item contenant le prochain match à venir
                 Log.d(TAG, "onDataChange: pos "+ posListMatch);
                 listViewMatch.setSelectionFromTop(posListMatch,0);
+                activity.findViewById(R.id.list).setVisibility(View.VISIBLE);
+                activity.findViewById(R.id.progressBar).setVisibility(View.GONE);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {}
