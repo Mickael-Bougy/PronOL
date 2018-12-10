@@ -44,13 +44,9 @@ public class Utils {
      * @return : true si le match est passé, false si non
      */
     public static boolean isAlreadyPlayed(String dateToTest){
-
-        Date matchDate = new Date(dateToTest);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        //Récupération et formatage de la date système
-        String current = dateFormat.format(new Date());
+        String current = convertDateFormat(new Date());
         Date now = new Date(current);
-
+        Date matchDate = new Date(dateToTest);
         /*i++;
         Log.d(TAG, "isAlreadyPlayed: now "+ now);
         Log.d(TAG, "isAlreadyPlayed: match "+ matchDate);
@@ -70,5 +66,12 @@ public class Utils {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = cm.getActiveNetworkInfo();
         return (info != null && info.isConnected());
+    }
+
+    public static String convertDateFormat(Date date){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        String dateFormatted = dateFormat.format(date);
+
+        return dateFormatted;
     }
 }
