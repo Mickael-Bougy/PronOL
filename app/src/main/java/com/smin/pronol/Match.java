@@ -1,5 +1,15 @@
 package com.smin.pronol;
 
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Calendar;
+import java.util.Date;
+
 public class Match {
 
     private String Date;
@@ -38,5 +48,15 @@ public class Match {
 
     public int getScore_exterieur() {
         return Score_exterieur;
+    }
+
+    public void addNewProno(){
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        if (user != null) {
+            databaseReference.child(user.getUid()).child("pronostique").setValue(this);
+        }
     }
 }

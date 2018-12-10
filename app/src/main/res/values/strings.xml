@@ -25,5 +25,7 @@
     <string name="Outside">Outside</string>
     <string name="Date">Date</string>
     <string name="Hours">Hour</string>
+    <string name="valid">Confirm</string>
+    <string name="cancel">Cancel</string>
 
 </resources>

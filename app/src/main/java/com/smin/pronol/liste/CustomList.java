@@ -10,17 +10,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.smin.pronol.Match;
 import com.smin.pronol.R;
+import com.smin.pronol.Utils;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class CustomList extends ArrayAdapter<Match> {
 
     private Activity context;
     private List<Match> matchList;
+    private TextView dialog_titleMatch;
+    private TextView dialog_tvDom;
+    private TextView dialog_tvExt;
+    private EditText dialog_scoreDom;
+    private EditText dialog_scoreExt;
+    private Button dialog_valid;
 
     public CustomList(Activity context, List<Match> matchList)
     {
@@ -80,15 +92,34 @@ public class CustomList extends ArrayAdapter<Match> {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setMessage("Are you sure you want to disconnect ?")
-                        .setTitle(match.getDomicile()+"/"+match.getExterieur())
-                        .setPositiveButton("Register", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
+                View dialogView = context.getLayoutInflater().inflate(R.layout.dialog_prono,null);
 
-                            }
-                        });
+                //<editor-fold desc=" Récupération des composants du layout">
+                dialog_titleMatch = dialogView.findViewById(R.id.dialog_tvMatchName);
+                dialog_scoreDom = dialogView.findViewById(R.id.dialog_scoreDom);
+                dialog_scoreExt = dialogView.findViewById(R.id.dialog_scoreExt);
+                dialog_tvDom = dialogView.findViewById(R.id.dialog_tvDom);
+                dialog_tvExt = dialogView.findViewById(R.id.dialog_tvExt);
+                dialog_valid = dialogView.findViewById(R.id.dialog_btn_valid);
+                //</editor-fold>
+
+                dialog_titleMatch.setText(match.getDomicile() +"/"+ match.getExterieur());
+                dialog_tvDom.setText(match.getDomicile());
+                dialog_tvExt.setText(match.getExterieur());
+
+                dialog_valid.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Date currentTime = Calendar.getInstance().getTime();
+                        String date = Utils.convertDateFormat(currentTime);
+                        Match m = new Match(date,match.getDomicile(),match.getExterieur(),Integer.parseInt(String.valueOf(dialog_scoreDom.getText())),Integer.parseInt(String.valueOf(dialog_scoreExt.getText())));
+                        m.addNewProno();
+                        Toast.makeText(context,"Pronostique enregistré", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setView(dialogView);
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }
