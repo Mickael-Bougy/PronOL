@@ -1,4 +1,4 @@
-package com.smin.pronol;
+package com.smin.pronol.liste;
 /** CustomList : Classe permettant d'afficher la liste des matchs
  *  dans le premier fragments
  */
@@ -6,15 +6,14 @@ package com.smin.pronol;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.smin.pronol.activities.LoginActivity;
-import com.smin.pronol.activities.TabbedActivity;
+import com.smin.pronol.Match;
+import com.smin.pronol.R;
 
 import java.util.List;
 

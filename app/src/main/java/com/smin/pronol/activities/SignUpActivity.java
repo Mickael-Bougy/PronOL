@@ -2,7 +2,6 @@ package com.smin.pronol.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -36,6 +35,11 @@ public class SignUpActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
+        if(!Utils.isNetworkAvailable(getApplicationContext())){
+            signUp.setEnabled(false);
+            Toast.makeText(getApplicationContext(),"Please define an internet connection",Toast.LENGTH_LONG);
+        }
+
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,7 +52,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()){
                                         // Lancement du menu
-                                        //startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+                                        startActivity(new Intent(SignUpActivity.this, MainTabActivity.class));
                                     }
                                     else {
                                         Utils.showSnackBar(SignUpActivity.this, findViewById(R.id.bottomLayout), getString(R.string.snack_invalideField));
@@ -67,8 +71,10 @@ public class SignUpActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
-        finish();
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+            finish();
+        }
         return super.onKeyDown(keyCode, event);
     }
 }

@@ -1,12 +1,14 @@
 package com.smin.pronol.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -22,7 +24,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button connect;
     private EditText mail;
     private EditText password;
-    private CheckBox remember;
     private TextView createAccount;
     private FirebaseAuth firebaseAuth;
 
@@ -43,24 +44,28 @@ public class LoginActivity extends AppCompatActivity {
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
                 startActivity(new Intent ( LoginActivity.this, SignUpActivity.class));
+                finish();
             }
         });
 
         connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if( !mail.getText().toString().trim().isEmpty() && !password.getText().toString().trim().isEmpty())
+                // Check de la connexion
+                if(!Utils.isNetworkAvailable(getApplicationContext())){
+                    Utils.showSnackBar(getApplicationContext(),findViewById(R.id.bottomLayout),"No connection");
+                }
+                else if( !mail.getText().toString().trim().isEmpty() && !password.getText().toString().trim().isEmpty())
                 {
                     firebaseAuth.signInWithEmailAndPassword(mail.getText().toString().trim(),password.getText().toString().trim())
                             .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()){
-                                        System.out.println("CONNEXION");
                                         // Lancement du menu
-                                        //startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                        startActivity(new Intent(LoginActivity.this, MainTabActivity.class));
+                                        finish();
                                     }
                                     else
                                     {
@@ -75,6 +80,30 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+    }
 
+    /**
+     *  Gestion du bouton retour de l'appareil, quitter l'application
+     * @param keyCode
+     * @param event
+     * @return
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+            builder.setMessage("Are you sure you want to leave Pron'OL ?")
+                    .setTitle("Leave Pron'OL")
+                    .setNegativeButton("No", null)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

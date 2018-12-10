@@ -1,4 +1,4 @@
-package com.smin.pronol;
+package com.smin.pronol.fragement;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,13 +14,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.smin.pronol.Match;
+import com.smin.pronol.R;
 
 import java.util.Calendar;
 import java.util.Date;
 
-public class Tab2Fragment extends Fragment {
+public class HistoriqueFrag extends Fragment {
 
-    private static final String TAG = "Tab2Fragment";
+    private static final String TAG = "HistoriqueFrag";
     private Button test;
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
@@ -29,7 +31,7 @@ public class Tab2Fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.tab2_fragment, container, false);
+        View view = inflater.inflate(R.layout.historique_fragment, container, false);
         test = (Button) view.findViewById(R.id.buttonFrag2);
 
         firebaseAuth = FirebaseAuth.getInstance();
