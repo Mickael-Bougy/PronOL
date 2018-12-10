@@ -26,5 +26,6 @@
     <string name="Outside">Outside</string>
     <string name="Date">Date</string>
     <string name="Hours">Hour</string>
+    <string name="Score">Score</string>
 
 </resources>
