@@ -5,7 +5,6 @@ package com.smin.pronol.liste;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +32,7 @@ public class CustomList extends ArrayAdapter<Match> {
     private EditText dialog_scoreDom;
     private EditText dialog_scoreExt;
     private Button dialog_valid;
+    private Button dialog_cancel;
 
     public CustomList(Activity context, List<Match> matchList)
     {
@@ -79,6 +79,7 @@ public class CustomList extends ArrayAdapter<Match> {
 
         // Récupération des informations d'un match contenu dans la base de données
         final Match match = matchList.get(position);
+        final int matchNumber = position;
 
         //<editor-fold desc="Affichage des données">
         holder.tvDom.setText(match.getDomicile());
@@ -88,7 +89,7 @@ public class CustomList extends ArrayAdapter<Match> {
         holder.tvScoreExt.setText(String.valueOf(match.getScore_exterieur()));
         //</editor-fold>
 
-        //TODO rowView.OnClickListener : CREATION DU LAYOUT POUR L'AFFICHAGE
+        // Affichage d'un Dialog pour renseigner sont pronostic
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,27 +102,40 @@ public class CustomList extends ArrayAdapter<Match> {
                 dialog_tvDom = dialogView.findViewById(R.id.dialog_tvDom);
                 dialog_tvExt = dialogView.findViewById(R.id.dialog_tvExt);
                 dialog_valid = dialogView.findViewById(R.id.dialog_btn_valid);
+                dialog_cancel = dialogView.findViewById(R.id.dialog_btn_cancel);
                 //</editor-fold>
 
                 dialog_titleMatch.setText(match.getDomicile() +"/"+ match.getExterieur());
                 dialog_tvDom.setText(match.getDomicile());
                 dialog_tvExt.setText(match.getExterieur());
 
+                // Création de l'AlertDialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setView(dialogView);
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+
+                // Insertion des données dans la base de données
                 dialog_valid.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Date currentTime = Calendar.getInstance().getTime();
                         String date = Utils.convertDateFormat(currentTime);
                         Match m = new Match(date,match.getDomicile(),match.getExterieur(),Integer.parseInt(String.valueOf(dialog_scoreDom.getText())),Integer.parseInt(String.valueOf(dialog_scoreExt.getText())));
-                        m.addNewProno();
+                        m.addNewProno(matchNumber);
                         Toast.makeText(context,"Pronostique enregistré", Toast.LENGTH_LONG).show();
+                        dialog.dismiss();
                     }
                 });
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setView(dialogView);
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                dialog_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+
             }
         });
 

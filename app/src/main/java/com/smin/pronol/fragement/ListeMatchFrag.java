@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,9 +28,9 @@ import java.util.List;
 public class ListeMatchFrag extends Fragment {
 
     private int posListMatch;
-    ListView listViewMatch;
-    List<Match> matchList;
-    DatabaseReference dbRefListMatch;
+    private ListView listViewMatch;
+    private List<Match> matchList;
+    private DatabaseReference dbRefListMatch;
     private FirebaseAuth session;
     private static final String TAG = "ListeMatchFrag";
 
@@ -46,19 +45,14 @@ public class ListeMatchFrag extends Fragment {
         dbRefListMatch = FirebaseDatabase.getInstance().getReference();
         session = FirebaseAuth.getInstance();
         affichageListe(getActivity());
-        listViewMatch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-            }
-        });
 
         return view;
     }
 
 
     /**
-     *  Récupération des matchs dans la bdd et remplissage de la listview
+     * Permet de récupérer la liste des matchs dans la base de données et de l'afficher
+     * @param activity : activité où la liste sera affiché
      */
     public void affichageListe (final Activity activity){
         posListMatch = 0;
