@@ -4,35 +4,24 @@ package com.smin.pronol.liste;
  */
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.smin.pronol.Match;
 import com.smin.pronol.R;
 import com.smin.pronol.Utils;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class HistoriqueList extends ArrayAdapter<Match> {
 
     private Activity context;
     private List<Match> matchList;
-    private TextView dialog_titleMatch;
-    private TextView dialog_tvDom;
-    private TextView dialog_tvExt;
-    private EditText dialog_scoreDom;
-    private EditText dialog_scoreExt;
-    private Button dialog_valid;
-    private Button dialog_cancel;
+
 
     public HistoriqueList(Activity context, List<Match> matchList)
     {
@@ -89,7 +78,8 @@ public class HistoriqueList extends ArrayAdapter<Match> {
         holder.tvDate.setText(match.getDate());
         holder.tvScoreDom.setText(String.valueOf(match.getScore_domicile()));
         holder.tvScoreExt.setText(String.valueOf(match.getScore_exterieur()));
-        holder.tvPoint.setText("+3");
+        //TODO Récupérer le match correspondant au pari
+        holder.tvPoint.setText(String.valueOf(Utils.calculPointMatch(match,match)));
         //</editor-fold>
 
 

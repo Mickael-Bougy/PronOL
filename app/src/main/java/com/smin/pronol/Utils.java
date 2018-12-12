@@ -80,12 +80,31 @@ public class Utils {
     }
 
     /**
+     * Calcul le nombre de point gagné selon le pronostic
+     * @param match : match joué
+     * @param prono : match pronostiqué
+     * @return : 0 si perdu, 1 si bon vainqueur, 3 si score exact
+     */
+
+    public static int calculPointMatch(Match match, Match prono){
+        int nbPoint = 0;
+        if(isGoodWinner(match,prono)){
+            nbPoint = 1;
+        }
+        if(isExactScore(match,prono)){
+            nbPoint = 3;
+        }
+
+        return  nbPoint;
+    }
+
+    /**
      *  Vérifie si le pronostic est parfaitement juste
      * @param match : match issu de la liste des matchs
      * @param prono : pronostic utilisateur
      * @return Vrai si le pronostic est bon sinon faux
      */
-    public static boolean isExactScore(Match match, Match prono){
+    private static boolean isExactScore(Match match, Match prono){
         if(match.getScore_domicile() ==  prono.getScore_domicile() && match.getScore_exterieur() == prono.getScore_exterieur()){
             return true;
         }
@@ -100,7 +119,7 @@ public class Utils {
      * @param prono : pronostic utilisateur
      * @return : Vrai si le pronostic est bon sinon faux
      */
-    public static boolean isGoodWinner(Match match, Match prono){
+    private static boolean isGoodWinner(Match match, Match prono){
         boolean domWin = false;
         if( prono.getScore_domicile() > match.getScore_exterieur()){
             domWin = true;

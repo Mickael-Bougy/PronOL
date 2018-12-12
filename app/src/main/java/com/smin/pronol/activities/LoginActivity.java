@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Check de la connexion
                 if(!Utils.isNetworkAvailable(getApplicationContext())){
-                    Utils.showSnackBar(getApplicationContext(),findViewById(R.id.bottomLayout),"No connection");
+                    Utils.showSnackBar(getApplicationContext(),findViewById(R.id.bottomLayout),getString(R.string.no_connection));
                 }
                 else if( !mail.getText().toString().trim().isEmpty() && !password.getText().toString().trim().isEmpty())
                 {
@@ -92,10 +92,10 @@ public class LoginActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK){
             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-            builder.setMessage("Are you sure you want to leave Pron'OL ?")
-                    .setTitle("Leave Pron'OL")
-                    .setNegativeButton("No", null)
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            builder.setMessage(getString(R.string.leave_msg))
+                    .setTitle(getString(R.string.leave))
+                    .setNegativeButton(getString(R.string.no), null)
+                    .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             finish();

@@ -65,13 +65,10 @@ public class HistoriqueFrag extends Fragment {
                     Match match = (Match) matchSnapshot.getValue(Match.class);
                     // Remplissage de la liste
                     matchList.add(match);
-
                 }
                 HistoriqueList adapter = new HistoriqueList(getActivity(), matchList);
                 listViewMatch.setAdapter(adapter);
-                Log.d(TAG, "onDataChange: affichage");
                 activity.findViewById(R.id.list_prono).setVisibility(View.VISIBLE);
-                Log.d(TAG, "onDataChange: visible");
                 activity.findViewById(R.id.progressBar_prono).setVisibility(View.GONE);
             }
             @Override

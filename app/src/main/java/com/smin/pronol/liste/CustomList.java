@@ -119,12 +119,18 @@ public class CustomList extends ArrayAdapter<Match> {
                 dialog_valid.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Date currentTime = Calendar.getInstance().getTime();
-                        String date = Utils.convertDateFormat(currentTime);
-                        Match m = new Match(date,match.getDomicile(),match.getExterieur(),Integer.parseInt(String.valueOf(dialog_scoreDom.getText())),Integer.parseInt(String.valueOf(dialog_scoreExt.getText())));
-                        m.addNewProno(matchNumber);
-                        Toast.makeText(context,"Pronostique enregistré", Toast.LENGTH_LONG).show();
-                        dialog.dismiss();
+                        if(!dialog_scoreDom.getText().toString().isEmpty() && !dialog_scoreExt.getText().toString().isEmpty()) {
+                            Date currentTime = Calendar.getInstance().getTime();
+                            String date = Utils.convertDateFormat(currentTime);
+                            Match m = new Match(date,match.getDomicile(),match.getExterieur(),Integer.parseInt(String.valueOf(dialog_scoreDom.getText())),Integer.parseInt(String.valueOf(dialog_scoreExt.getText())));
+                            m.addNewProno(matchNumber);
+                            Toast.makeText(context,R.string.prono_register, Toast.LENGTH_LONG).show();
+                            dialog.dismiss();
+                        }
+                        else {
+                            Toast.makeText(getContext(),R.string.snack_emptyField,Toast.LENGTH_LONG).show();
+                        }
+
                     }
                 });
 
