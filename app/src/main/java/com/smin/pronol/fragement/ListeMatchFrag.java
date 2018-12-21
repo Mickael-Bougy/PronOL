@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.smin.pronol.activities.MainTabActivity;
 import com.smin.pronol.liste.CustomList;
 import com.smin.pronol.Match;
 import com.smin.pronol.R;
@@ -32,6 +34,7 @@ public class ListeMatchFrag extends Fragment {
     private List<Match> matchList;
     private DatabaseReference dbRefListMatch;
     private FirebaseAuth session;
+    public static boolean matchListSet;
     private static final String TAG = "ListeMatchFrag";
 
     @Nullable
@@ -71,6 +74,12 @@ public class ListeMatchFrag extends Fragment {
                         posListMatch++;
                     }
                 }
+
+                MainTabActivity.matchListBis = matchList;
+                matchListSet = true;
+
+
+
                 CustomList adapter = new CustomList(getActivity(), matchList);
                 listViewMatch.setAdapter(adapter);
 
@@ -85,5 +94,4 @@ public class ListeMatchFrag extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
     }
-
 }

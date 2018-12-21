@@ -86,7 +86,7 @@ public class Utils {
      * @return : 0 si perdu, 1 si bon vainqueur, 3 si score exact
      */
 
-    public static int calculPointMatch(Match match, Match prono){
+    private static int calculPointMatch(Match match, Match prono){
         int nbPoint = 0;
         if(isGoodWinner(match,prono)){
             nbPoint = 1;
@@ -143,5 +143,19 @@ public class Utils {
                 return false;
             }
         }
+    }
+
+    /**
+     *  Donne le nombre gagné si le match à bien été joué
+     * @param match : match joué
+     * @param prono : match pronositqué
+     * @return : -1 = match non joué sinon voir return calculPointMatch
+     */
+    public static int getPointMatch(Match match, Match prono){
+        int nbPoint = -1;
+        if(isAlreadyPlayed(match.getDate())){
+            nbPoint = calculPointMatch(match,prono);
+        }
+        return nbPoint;
     }
 }

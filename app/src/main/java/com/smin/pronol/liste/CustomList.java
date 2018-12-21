@@ -140,11 +140,10 @@ public class CustomList extends ArrayAdapter<Match> {
                         dialog.dismiss();
                     }
                 });
-
-
-            }
+                }
         });
 
         return convertView;
     }
+
 }

@@ -4,6 +4,7 @@ package com.smin.pronol.liste;
  */
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,20 +15,24 @@ import android.widget.TextView;
 import com.smin.pronol.Match;
 import com.smin.pronol.R;
 import com.smin.pronol.Utils;
+import com.smin.pronol.activities.MainTabActivity;
+import com.smin.pronol.fragement.ListeMatchFrag;
 
 import java.util.List;
 
 public class HistoriqueList extends ArrayAdapter<Match> {
-
+    private  final static  String TAG ="HistoriqueList";
     private Activity context;
     private List<Match> matchList;
+    private List<Integer> indexList;
 
 
-    public HistoriqueList(Activity context, List<Match> matchList)
+    public HistoriqueList(Activity context, List<Match> matchList,  List<Integer> indexList)
     {
         super(context, R.layout.row_adapter, matchList);
         this.context = context;
         this.matchList = matchList;
+        this.indexList = indexList;
     }
 
     public static class ViewHolder {
@@ -49,7 +54,6 @@ public class HistoriqueList extends ArrayAdapter<Match> {
     @Override
     public View getView(int position,  View convertView,  ViewGroup parent)
     {
-
         if(convertView == null){
             LayoutInflater inflater = context.getLayoutInflater();
             convertView = inflater.inflate(R.layout.prono_adapter, null, true);
@@ -71,6 +75,15 @@ public class HistoriqueList extends ArrayAdapter<Match> {
 
         // Récupération des informations d'un match contenu dans la base de données
         final Match match = matchList.get(position);
+        int point;
+        if (ListeMatchFrag.matchListSet){
+             point = Utils.getPointMatch(MainTabActivity.matchListBis.get(indexList.get(position)),match);
+        }
+        else{
+            //int point = Utils.getPointMatch(matchListBis.get(indexList.get(position)),match);
+             point = Utils.getPointMatch(match,match);
+        }
+
 
         //<editor-fold desc="Affichage des données">
         holder.tvDom.setText(match.getDomicile());
@@ -78,11 +91,13 @@ public class HistoriqueList extends ArrayAdapter<Match> {
         holder.tvDate.setText(match.getDate());
         holder.tvScoreDom.setText(String.valueOf(match.getScore_domicile()));
         holder.tvScoreExt.setText(String.valueOf(match.getScore_exterieur()));
-        //TODO Récupérer le match correspondant au pari
-        holder.tvPoint.setText(String.valueOf(Utils.calculPointMatch(match,match)));
+        //TODO Récupérer le match correspondant au
+        if (point != -1){
+            holder.tvPoint.setText(String.valueOf(point));
+        }
         //</editor-fold>
-
 
         return convertView;
     }
+
 }

@@ -11,15 +11,18 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.smin.pronol.Match;
 import com.smin.pronol.fragement.ListeMatchFrag;
 import com.smin.pronol.R;
 import com.smin.pronol.liste.SectionPageAdapter;
 import com.smin.pronol.fragement.HistoriqueFrag;
 
+import java.util.List;
+
 public class MainTabActivity extends AppCompatActivity {
 
     private static final String TAG = "MainTabActivity";
-
+    public static List<Match> matchListBis;
     private SectionPageAdapter mSectionsPageAdapter;
     private ViewPager mViewPager;
     private FirebaseAuth session;
@@ -44,6 +47,7 @@ public class MainTabActivity extends AppCompatActivity {
         SectionPageAdapter adapter = new SectionPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new ListeMatchFrag(), getString(R.string.matchList));
         adapter.addFragment(new HistoriqueFrag(), getString(R.string.historical));
+
         viewPager.setAdapter(adapter);
     }
 
