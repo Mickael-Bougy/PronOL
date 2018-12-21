@@ -17,6 +17,18 @@
     <string name="cancel">Annuler</string>
     <string name="action_settings">Paramètres</string>
     <string name="title_activity_menu">Menu</string>
-
+    <string name="prono_register">Pronostic enregistré</string>
+    <string name="matchList">Liste des matchs</string>
+    <string name="historical">Historique</string>
+    <string name="no_connection">Pas de connexion</string>
+    <string name="disconnection_msg">Etes-vous sur de vouloir vous déconnecter ?</string>
+    <string name="disconnection">Déconnexion</string>
+    <string name="no">Non</string>
+    <string name="yes">Oui</string>
+    <string name="no_connection_msg">Veuillez vous connecter à internet</string>
+    <string name="title_activity_tabbed">MainTab</string>
+    <string name="leave_msg">Etes-vous sur de vouloir quitter l\'application ?</string>
+    <string name="leave">Quitter Pron\'OL</string>
+    <string name="alreadyPlayed_msg">Impossible de pronostiquer ce match, il est déjà joué !</string>
 
 </resources>

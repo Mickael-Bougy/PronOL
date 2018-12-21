@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textSize="18dp"
+        android:textSize="18sp"
+        android:textColor="@color/colorPrimary"
         tools:hint ="OL / ASSE" />
 
     <LinearLayout
@@ -30,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="@color/colorPrimary"
                 tools:hint ="OL" />
 
             <TextView
@@ -38,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="@color/colorPrimary"
                 tools:hint ="ASSE" />
         </LinearLayout>
         <LinearLayout

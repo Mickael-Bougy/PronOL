@@ -50,13 +50,17 @@ public class Match {
         return Score_exterieur;
     }
 
-    public void addNewProno(){
+    public void addNewProno(int matchNumber){
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
         if (user != null) {
-            databaseReference.child(user.getUid()).child("pronostique").setValue(this);
+            databaseReference.child(user.getUid()).child("pronostique").child(String.valueOf(matchNumber)).child("Date").setValue(Date);
+            databaseReference.child(user.getUid()).child("pronostique").child(String.valueOf(matchNumber)).child("Domicile").setValue(Domicile);
+            databaseReference.child(user.getUid()).child("pronostique").child(String.valueOf(matchNumber)).child("Exterieur").setValue(Exterieur);
+            databaseReference.child(user.getUid()).child("pronostique").child(String.valueOf(matchNumber)).child("Score_domicile").setValue(Score_domicile);
+            databaseReference.child(user.getUid()).child("pronostique").child(String.valueOf(matchNumber)).child("Score_exterieur").setValue(Score_exterieur);
         }
     }
 }

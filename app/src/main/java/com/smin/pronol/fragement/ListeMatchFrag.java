@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.smin.pronol.activities.MainTabActivity;
 import com.smin.pronol.liste.CustomList;
 import com.smin.pronol.Match;
 import com.smin.pronol.R;
@@ -29,10 +30,11 @@ import java.util.List;
 public class ListeMatchFrag extends Fragment {
 
     private int posListMatch;
-    ListView listViewMatch;
-    List<Match> matchList;
-    DatabaseReference dbRefListMatch;
+    private ListView listViewMatch;
+    private List<Match> matchList;
+    private DatabaseReference dbRefListMatch;
     private FirebaseAuth session;
+    public static boolean matchListSet;
     private static final String TAG = "ListeMatchFrag";
 
     @Nullable
@@ -46,19 +48,14 @@ public class ListeMatchFrag extends Fragment {
         dbRefListMatch = FirebaseDatabase.getInstance().getReference();
         session = FirebaseAuth.getInstance();
         affichageListe(getActivity());
-        listViewMatch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-            }
-        });
 
         return view;
     }
 
 
     /**
-     *  Récupération des matchs dans la bdd et remplissage de la listview
+     * Permet de récupérer la liste des matchs dans la base de données et de l'afficher
+     * @param activity : activité où la liste sera affiché
      */
     public void affichageListe (final Activity activity){
         posListMatch = 0;
@@ -77,6 +74,12 @@ public class ListeMatchFrag extends Fragment {
                         posListMatch++;
                     }
                 }
+
+                MainTabActivity.matchListBis = matchList;
+                matchListSet = true;
+
+
+
                 CustomList adapter = new CustomList(getActivity(), matchList);
                 listViewMatch.setAdapter(adapter);
 
@@ -91,5 +94,4 @@ public class ListeMatchFrag extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
     }
-
 }

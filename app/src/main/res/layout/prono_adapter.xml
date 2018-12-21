@@ -69,9 +69,23 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/tvScoreExt"
+        android:layout_toLeftOf="@id/tvPoint"
         android:gravity="center"
         android:text="@string/Outside"
         android:textSize="20sp"
         android:textColor="@color/colorPrimaryDark"/>
+
+    <TextView
+        android:id="@+id/tvPoint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:textSize="20sp"
+        tools:hint="+0"
+        android:textColor="@color/colorPrimaryDark"/>
+
 
 </RelativeLayout>

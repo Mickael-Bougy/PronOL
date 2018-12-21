@@ -37,7 +37,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         if(!Utils.isNetworkAvailable(getApplicationContext())){
             signUp.setEnabled(false);
-            Toast.makeText(getApplicationContext(),"Please define an internet connection",Toast.LENGTH_LONG);
+            Toast.makeText(getApplicationContext(),getString(R.string.no_connection_msg),Toast.LENGTH_LONG).show();
         }
 
         signUp.setOnClickListener(new View.OnClickListener() {
