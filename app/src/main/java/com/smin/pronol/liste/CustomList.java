@@ -65,6 +65,7 @@ public class CustomList extends ArrayAdapter<Match> {
             convertView = inflater.inflate(R.layout.row_adapter, null, true);
         }
 
+        // Création d'un view holder pour recycler les vues et rendre la liste plus fluide
         ViewHolder holder = (ViewHolder) convertView.getTag();
 
         if(holder == null){
@@ -93,54 +94,64 @@ public class CustomList extends ArrayAdapter<Match> {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                View dialogView = context.getLayoutInflater().inflate(R.layout.dialog_prono,null);
 
-                //<editor-fold desc=" Récupération des composants du layout">
-                dialog_titleMatch = dialogView.findViewById(R.id.dialog_tvMatchName);
-                dialog_scoreDom = dialogView.findViewById(R.id.dialog_scoreDom);
-                dialog_scoreExt = dialogView.findViewById(R.id.dialog_scoreExt);
-                dialog_tvDom = dialogView.findViewById(R.id.dialog_tvDom);
-                dialog_tvExt = dialogView.findViewById(R.id.dialog_tvExt);
-                dialog_valid = dialogView.findViewById(R.id.dialog_btn_valid);
-                dialog_cancel = dialogView.findViewById(R.id.dialog_btn_cancel);
-                //</editor-fold>
+                if (!Utils.isAlreadyPlayed(match.getDate())){
 
-                dialog_titleMatch.setText(match.getDomicile() +"/"+ match.getExterieur());
-                dialog_tvDom.setText(match.getDomicile());
-                dialog_tvExt.setText(match.getExterieur());
+                    //<editor-fold desc="Création d'un AlertDialog pour saisir le pronostic du match">
 
-                // Création de l'AlertDialog
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setView(dialogView);
-                final AlertDialog dialog = builder.create();
-                dialog.show();
+                    View dialogView = context.getLayoutInflater().inflate(R.layout.dialog_prono,null);
 
-                // Insertion des données dans la base de données
-                dialog_valid.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if(!dialog_scoreDom.getText().toString().isEmpty() && !dialog_scoreExt.getText().toString().isEmpty()) {
-                            Date currentTime = Calendar.getInstance().getTime();
-                            String date = Utils.convertDateFormat(currentTime);
-                            Match m = new Match(date,match.getDomicile(),match.getExterieur(),Integer.parseInt(String.valueOf(dialog_scoreDom.getText())),Integer.parseInt(String.valueOf(dialog_scoreExt.getText())));
-                            m.addNewProno(matchNumber);
-                            Toast.makeText(context,R.string.prono_register, Toast.LENGTH_LONG).show();
+                    //<editor-fold desc=" Récupération des composants du layout">
+                    dialog_titleMatch = dialogView.findViewById(R.id.dialog_tvMatchName);
+                    dialog_scoreDom = dialogView.findViewById(R.id.dialog_scoreDom);
+                    dialog_scoreExt = dialogView.findViewById(R.id.dialog_scoreExt);
+                    dialog_tvDom = dialogView.findViewById(R.id.dialog_tvDom);
+                    dialog_tvExt = dialogView.findViewById(R.id.dialog_tvExt);
+                    dialog_valid = dialogView.findViewById(R.id.dialog_btn_valid);
+                    dialog_cancel = dialogView.findViewById(R.id.dialog_btn_cancel);
+                    //</editor-fold>
+
+                    dialog_titleMatch.setText(match.getDomicile() +"/"+ match.getExterieur());
+                    dialog_tvDom.setText(match.getDomicile());
+                    dialog_tvExt.setText(match.getExterieur());
+
+                    // Création de l'AlertDialog
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setView(dialogView);
+                    final AlertDialog dialog = builder.create();
+                    dialog.show();
+
+                    // Insertion des données dans la base de données
+                    dialog_valid.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if(!dialog_scoreDom.getText().toString().isEmpty() && !dialog_scoreExt.getText().toString().isEmpty()) {
+                                Date currentTime = Calendar.getInstance().getTime();
+                                String date = Utils.convertDateFormat(currentTime);
+                                Match m = new Match(date,match.getDomicile(),match.getExterieur(),Integer.parseInt(String.valueOf(dialog_scoreDom.getText())),Integer.parseInt(String.valueOf(dialog_scoreExt.getText())));
+                                m.addNewProno(matchNumber);
+                                Toast.makeText(context,R.string.prono_register, Toast.LENGTH_LONG).show();
+                                dialog.dismiss();
+                            }
+                            else {
+                                Toast.makeText(getContext(),R.string.snack_emptyField,Toast.LENGTH_LONG).show();
+                            }
+
+                        }
+                    });
+
+                    dialog_cancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
                             dialog.dismiss();
                         }
-                        else {
-                            Toast.makeText(getContext(),R.string.snack_emptyField,Toast.LENGTH_LONG).show();
-                        }
-
-                    }
-                });
-
-                dialog_cancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
+                    });
+                    //</editor-fold>
                 }
+                else {
+                    Toast.makeText(context,context.getString(R.string.alreadyPlayed_msg), Toast.LENGTH_LONG).show();
+                }
+            }
         });
 
         return convertView;

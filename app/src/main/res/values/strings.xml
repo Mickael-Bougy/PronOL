@@ -29,6 +29,7 @@
     <string name="title_activity_tabbed">MainTab</string>
     <string name="leave_msg">Are you sure you want to leave Pron\'OL ?</string>
     <string name="leave">Leave Pron\'OL</string>
+    <string name="alreadyPlayed_msg">Impossible to prognosticate this game , it\'s already played !</string>
 
 
 </resources>

@@ -29,5 +29,6 @@
     <string name="title_activity_tabbed">MainTab</string>
     <string name="leave_msg">Etes-vous sur de vouloir quitter l\'application ?</string>
     <string name="leave">Quitter Pron\'OL</string>
+    <string name="alreadyPlayed_msg">Impossible de pronostiquer ce match, il est déjà joué !</string>
 
 </resources>

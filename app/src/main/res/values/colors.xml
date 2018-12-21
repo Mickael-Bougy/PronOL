@@ -7,4 +7,8 @@
     <color name="colorLyonOr">#FFD700</color>
     <color name="colorLyonBleue">#0b3392</color>
     <color name="colorLyonRouge">#cd0428</color>
+
+    <color name="perfectScore">#33cd04</color>
+    <color name="goodWinner">#fcaf21</color>
+
 </resources>

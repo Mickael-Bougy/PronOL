@@ -91,10 +91,22 @@ public class HistoriqueList extends ArrayAdapter<Match> {
         holder.tvDate.setText(match.getDate());
         holder.tvScoreDom.setText(String.valueOf(match.getScore_domicile()));
         holder.tvScoreExt.setText(String.valueOf(match.getScore_exterieur()));
-        //TODO Récupérer le match correspondant au
+
         if (point != -1){
             holder.tvPoint.setText(String.valueOf(point));
+            // Coloration du background selon le nombre de point gagnés
+            switch (point) {
+                case 0 : convertView.setBackgroundColor(convertView.getResources().getColor(R.color.colorLyonRouge));
+                    break;
+                case 1 : convertView.setBackgroundColor(convertView.getResources().getColor(R.color.goodWinner));
+                    break;
+                case 3 : convertView.setBackgroundColor(convertView.getResources().getColor(R.color.perfectScore));
+                    break;
+            }
+
         }
+
+
         //</editor-fold>
 
         return convertView;
